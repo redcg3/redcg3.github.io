@@ -57,7 +57,7 @@ cty=document.getElementById("cty");
 var ip=await fetch("https://api.ipify.org?format=json");
 dats=await ip.json();
 
-//alert("Dboa?");
+alert("Dboa?");
 
 resp= await fetch("http://ip-api.com/json/"+dats.ip);
 data=await resp.json();
