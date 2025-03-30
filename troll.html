@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Entraste Aqui Porquê? Macaco</title>
+<style>
+*{
+font-weight:bold;
+color:white;
+}
+h2{
+text-align:center;
+border:1px solid black;
+background-color:white;
+color:black;
+}
+body{
+background:linear-gradient(to top,black,brown);
+background-repeat:no-repeat;
+height:800px;
+}
+h3{
+animation:piscar 0.1s infinite ease alternate;
+text-align:center;
+//text-shadow:1px 1px 2px black;
+padding:10px;
+background-color:orange;
+border:1px solid black;
+border-radius:10px;
+}
+@keyframes piscar{
+0%{
+color:red;
+}
+100%{
+color:blue;
+}
+}
+</style>
+</head>
+<body>
+<h2>Entraste aqui porquê? Macaco</h2>
+<h2>Vai ler a Bíblia mazé</h2>
+
+<h3>Estamos a te rastrear</h3>
+<p id="ips">Teu IP: </p>
+<p id="country">Teu País: </p>
+<p id="cty">Tua província/cidade: </p>
+<img width="370px" height="200px" src="icon.jpeg">
+<script>
+async function start(){
+var ips=document.getElementById("ips");
+var country=document.getElementById("country");
+cty=document.getElementById("cty");
+var ip=await fetch("https://api.ipify.org?format=json");
+dats=await ip.json();
+
+//alert("Dboa?");
+
+resp= await fetch("http://ip-api.com/json/"+dats.ip);
+data=await resp.json();
+ips.innerText="Teu IP: "+dats.ip;
+country.innerText="Teu País: "+data.country;
+cty.innerText="Tua Província/cidade: "+data.city;
+var lat=data.lat;
+var lon=data.lon;
+
+}
+start();
+</script>
+</body>
+</html>
